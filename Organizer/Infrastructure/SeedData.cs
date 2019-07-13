@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Organizer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +26,7 @@ namespace Organizer.Infrastructure
                 }
 
                 context.AddRange(contacts);
+                context.Add(new ContactInfo { Type = "Mail", Value = "diman@mail.ru", ContactID = 1 });
                 context.SaveChanges();
             }
         }
