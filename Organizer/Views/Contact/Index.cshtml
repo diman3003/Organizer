@@ -1,65 +1,105 @@
-﻿@model IEnumerable<Organizer.Models.Contact>
+﻿@model IndexViewModel
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h2>Index</h2>
+        @{
+            ViewData["Title"] = "Index";
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SecondName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Job)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Job)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+        <p>
+            <a asp-action="Create">Create New Contact</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contacts.First().LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contacts.First().FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contacts.First().SecondName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contacts.First().BirthDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contacts.First().Company)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contacts.First().Job)
+                    </th>
+                    <th></th>
+                </tr>
+                <tr><td colspan="7"><hr></td></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Contacts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SecondName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Job)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
+                            <a asp-action="Create" asp-controller="ContactInfoes" asp-route-id="@item.ID">Add Contact Info</a>
+                        </td>
+                    </tr>
+
+                    @if (Model.ContactInfos.Any(i => i.ContactID == item.ID))
+                    {
+                        <tr>
+                            <td colspan="2"></td>
+                            <td><b>Contact Info:</b></td>
+                            <td>
+                                <b>@Html.DisplayNameFor(model => model.ContactInfos.First().Type)</b>
+                            </td>
+                            <td>
+                                <b>@Html.DisplayNameFor(model => model.ContactInfos.First().Value)</b>
+                            </td>
+                            <td></td>
+                            <td colspan="2"></td>
+                        </tr>
+
+
+                        @foreach (var info in Model.ContactInfos.Where(i => i.ContactID == item.ID))
+                        {
+                            <tr>
+                                <td colspan="3"></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => info.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => info.Value)
+                                </td>
+                                <td colspan="2">
+                                    <a asp-action="Edit" asp-controller="ContactInfoes" asp-route-id="@info.ID">Edit</a> |
+                                    <a asp-action="Details" asp-controller="ContactInfoes" asp-route-id="@info.ID">Details</a> |
+                                    <a asp-action="Delete" asp-controller="ContactInfoes" asp-route-id="@info.ID">Delete</a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    }
+                    <tr><td colspan="7"><hr></td></tr>
+                }
+            </tbody>
 </table>

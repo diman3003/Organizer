@@ -38,7 +38,7 @@ namespace Organizer
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-
+            
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Organizer.Models;
 
@@ -21,7 +20,15 @@ namespace Organizer.Controllers
         // GET: Contact
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Contacts.ToListAsync());
+            var contacts = await _context.Contacts.ToListAsync();
+            var infos = await _context.ContactInfos.ToListAsync();
+
+            IndexViewModel viewModel = new IndexViewModel() {
+                Contacts = contacts,
+                ContactInfos = infos};
+
+
+            return View(viewModel);
         }
 
         // GET: Contact/Details/5
@@ -148,5 +155,6 @@ namespace Organizer.Controllers
         {
             return _context.Contacts.Any(e => e.ID == id);
         }
+
     }
 }

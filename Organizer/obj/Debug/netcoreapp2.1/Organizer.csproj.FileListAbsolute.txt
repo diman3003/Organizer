@@ -30,3 +30,8 @@ C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Vi
 C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\Contact\Delete.g.cshtml.cs
 C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\Contact\Details.g.cshtml.cs
 C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\Contact\Edit.g.cshtml.cs
+C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\ContactInfoes\Create.g.cshtml.cs
+C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\ContactInfoes\Delete.g.cshtml.cs
+C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\ContactInfoes\Details.g.cshtml.cs
+C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\ContactInfoes\Edit.g.cshtml.cs
+C:\Users\diman\source\repos\Organizer\Organizer\obj\Debug\netcoreapp2.1\Razor\Views\ContactInfoes\Index.g.cshtml.cs
