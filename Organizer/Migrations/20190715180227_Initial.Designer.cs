@@ -10,7 +10,7 @@ using Organizer.Models;
 namespace Organizer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190714141813_Initial")]
+    [Migration("20190715180227_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -17,6 +17,7 @@ namespace Organizer.Models
         [MaxLength(30)]
         public string SecondName { get; set; }
         [UIHint("Date")]
+        [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
         [MaxLength(100)]
         public string Company { get; set; }
