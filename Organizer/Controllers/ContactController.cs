@@ -5,28 +5,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Organizer.Models;
+using Organizer.Models.ViewModels;
+
 
 namespace Organizer.Controllers
 {
     public class ContactController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        public int PageSize = 4;
         public ContactController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Contact
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var contacts = await _context.Contacts.ToListAsync();
-            var infos = await _context.ContactInfos.ToListAsync();
+            IndexViewModel viewModel = new IndexViewModel()
+            {
+                Contacts = await _context.Contacts.Skip((page - 1) * PageSize).Take(PageSize).Include(i => i.Infos).ToListAsync(),
 
-            IndexViewModel viewModel = new IndexViewModel() {
-                Contacts = contacts,
-                ContactInfos = infos};
-
+                PageInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = await _context.Contacts.CountAsync()
+                }
+            };
 
             return View(viewModel);
         }

@@ -63,23 +63,23 @@
                         </td>
                     </tr>
 
-                    @if (Model.ContactInfos.Any(i => i.ContactID == item.ID))
+                    @if (item.Infos.Any(i => i.ContactID == item.ID))
                     {
                         <tr>
                             <td colspan="2"></td>
                             <td><b>Contact Info:</b></td>
                             <td>
-                                <b>@Html.DisplayNameFor(model => model.ContactInfos.First().Type)</b>
+                                <b>@Html.DisplayNameFor(model => item.Infos.First().Type)</b>
                             </td>
                             <td>
-                                <b>@Html.DisplayNameFor(model => model.ContactInfos.First().Value)</b>
+                                <b>@Html.DisplayNameFor(model => item.Infos.First().Value)</b>
                             </td>
                             <td></td>
                             <td colspan="2"></td>
                         </tr>
 
 
-                        @foreach (var info in Model.ContactInfos.Where(i => i.ContactID == item.ID))
+                        @foreach (var info in item.Infos.Where(i => i.ContactID == item.ID))
                         {
                             <tr>
                                 <td colspan="3"></td>
@@ -103,3 +103,6 @@
                 }
             </tbody>
 </table>
+
+<b>Pages:</b>
+<div page-model="@Model.PageInfo" page-action="Index"></div>
